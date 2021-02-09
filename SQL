@@ -1,9 +1,3 @@
-SELECT * from dept
-
-
-SELECT * from dept
-where deptno = 30
-
 
 SELECT * from dept
 where deptno = ( select deptno from dept where deptno = 30)
