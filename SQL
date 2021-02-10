@@ -110,3 +110,219 @@ WHERE job = 'MANAGER'
 SELECT ename || ' makes $' || sal || ' pe                                                                   
 
                                                                 
+                                                          Single Row Functions
+
+
+SELECT 'my name is ' || ename
+FROM EMP
+
+
+SELECT concat('my name is ', ename)
+FROM EMP
+
+
+SELECT upper('hello')
+from emp
+
+SELECT 'hello'
+from emp
+where deptno = 20
+
+
+select upper('hello')
+from DUAL
+
+
+select lower('hello')
+from DUAL 
+
+
+SELECT 'pizza' as FOOD, 'fanta' as drink, concat('hello',
+
+
+
+                                                    Functions in WHERE
+                                                    
+SELECT lower(ename) from emp;
+
+
+SELECT *
+FROM emp
+WHERE JOB = lower('MANAGER')
+
+
+SELECT *
+FROM emp
+WHERE JOB = upper('MANAGER')
+
+
+SELECT *
+FROM emp
+WHERE JOB = upper('manager')
+
+
+SELECT initcap('hello my name is Imtiaz') as sentence
+from dual
+
+
+SELECT length('hello my name is Imti')
+
+                                              Numeric Data Types
+                                              
+-- round 
+
+SELECT round(107.088, 2) from dual
+
+
+SELECT round(107.088, 3) from dual
+
+
+SELECT round(107.0887, 3) from dual
+
+
+SELECT round(107.9) from dual
+
+-- trunc 
+
+SELECT trunc(107.938439849) from dual
+
+
+SELECT trunc(107.938439849, 3) from dual
+
+
+SELECT trunc(107.938439849, 5) from dual
+
+-- sysdate 
+
+SELECT sysdate from dual
+
+-- systimestamp 
+
+SELECT systimestamp from dual
+
+-- add_months 
+
+SELECT add_months('11/17/2012', 3)
+from dual
+
+
+SELECT add_months('11/17/2012', -3)
+from dual
+
+
+SELECT add_months(sysdate, -3)
+from dual
+
+
+SELECT add_months(sysdate, +100)
+from dual
+
+-- months_between 
+
+SELECT months_between('12/15/2012', '12/4/2013')
+from dual
+
+
+SELECT months_between('12/4/2013', '12/15/2012')
+from dual
+
+
+SELECT months_between('12/4/2013', '12/4/2012')
+from dual
+
+
+SELECT trunc(systimestamp) from dual
+
+
+SELECT trunc(systimestamp, 'YEAR') from dual
+
+
+SELECT trunc(systimestamp, 'MONTH') from dual
+
+
+SELECT hiredate, trunc(hiredate, 'MONTH') from emp
+
+
+SELECT ename, hiredate, trunc(hiredate, 'MONTH') from emp
+
+
+SELECT ename, hiredate, trunc(hiredate, 'MONTH')
+from emp
+where trunc(hiredate, 'YEAR') = '01/01/1982'
+
+
+                                                               SRF & Date Formatting
+                                                               
+SELECT to_char(sysdate, 'mm-dd-yyyy') from dual
+
+
+SELECT to_char(sysdate, 'mm/dd/yyyy') from dual
+
+
+SELECT to_char(sysdate, 'dd-mm-yyyy') from dual
+
+
+SELECT to_char(sysdate, 'ddth "of" month, yyyy') from dual
+
+-- Solution to assignment at 10:52 
+
+SELECT ename, sal, to_char(sal, '$99,999.99') salaries from emp
+
+-- to_date function 
+
+SELECT to_date('2012-08-27', 'yyyy-mm-dd'))
+from dual
+
+
+SELECT add_months(to_date('2012-08-27', 'yyyy-mm-dd'), 2)
+from dual
+
+
+SELECT to_date('3 of June, 2012', 'dd "of" Month, YYYY')
+from dual
+
+
+LAST_DAY(d)
+last_day is a date function thatÂ requires a date as an argument. It returns the last day of the month in which the given date falls. The argument is required for this function to work properly.
+
+
+
+NEXT_DAY(d, c)
+The first argument is the date and the second argument is a text reference to a day of the week. Both arguments are required for this function to work properly. This function returns a valid date representing the first occurrence of the c day following the date represented in d.Â                                                                
+                                                               
+                                              
+                                                              SRF , NULL, NULL IF
+                                                              
+ select ename, job, sal, comm
+from emp
+where empno in (7839, 7698, 7566, 7654)
+
+
+select ename, job, sal, NVL(comm, 0)
+from emp
+where empno in (7839, 7698, 7566, 7654)
+
+-- Solution to Assginment at 4:00 
+
+select ename, job, sal, NVL(to_char(comm), 'No Data Found')
+from emp
+where empno in (7839, 7698, 7566, 7654)
+
+
+select ename, length(ename) from emp
+
+
+select ename, length(ename), NULLIF(length(ename), 5) from emp
+
+
+select ename, length(ename), nvl(NULLIF(length(ename), 5), 'length is 5') from emp /* Gives "invalid number" error */
+
+
+select ename, length(ename), nvl(NULLIF(to_char(length(ename)), to_char(5)), 'length is 5') from emp 
+
+
+select ename, length(ename), nvl(NULLIF(to_char(length(ename)), to_char(5)), 'length is 5') as result, sal from emp 
+where sal > 2000                                                             
+                                                              
+                                                    
+                                                    
