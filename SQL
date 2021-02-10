@@ -1,4 +1,4 @@
-Single Table Query
+                                                                          Single Table Query
                                                 Select Clause
 SELECT * FROM EMP;
 
