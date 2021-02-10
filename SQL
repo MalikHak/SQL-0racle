@@ -323,6 +323,114 @@ select ename, length(ename), nvl(NULLIF(to_char(length(ename)), to_char(5)), 'le
 
 select ename, length(ename), nvl(NULLIF(to_char(length(ename)), to_char(5)), 'length is 5') as result, sal from emp 
 where sal > 2000                                                             
-                                                              
+                                              
+                                              
+                                              Grouping Functions
+                                              
+                                              
+select max(sal) from emp
+
+
+select max(sal) as max_sal from emp
+
+
+select min(sal) as min_sal from emp
+
+
+select sum(sal) as sum_sal from emp
+
+
+SELECT * from emp
+where lower(job) like '%manager%'
+
+
+SELECT max(sal) from emp
+where lower(job) like '%manager%'
+
+
+SELECT max(sal) from emp
+where job = 'MANAGER'
+
+
+SELECT avg(sal) as avg_sal from emp
+
+
+SELECT count(ename) as count from emp
+
+
+SELECT count(sal) as count from emp
+
+
+SELECT count(*) as count from emp
+
+
+SELECT count(comm) as count from emp
+
+
+SELECT sum(sal) / count(*) as computed_avg, avg(sal) as native_avg from emp
+
+
+SELECT sum(sal) + avg(sal) as computed from emp 
+
+
+SELECT sum(sal) as sum, avg(sal) as avg, max(sal) as max, min(sal) as min, count(*)
+from emp
+
+
+SELECT avg(sal)
+from emp
+where job = 'SALESMAN'
+
+
+SELECT avg(sal)
+from emp
+where job = 'CLERK'
+
+
+SELECT avg(sal)
+from emp
+where job = 'MANAGER'
+
+
+                                                          GroupBy
+                                                          
+SELECT avg(sal), job
+from emp
+GROUP BY job
+
+
+SELECT job
+from emp
+GROUP BY job
+
+
+SELECT count(*), job
+from emp
+GROUP BY job
+
+
+SELECT min(sal), job
+from emp
+GROUP BY job
+
+
+SELECT distict job from emp
+
+
+                                      GroupBy Count
+SELECT * from emp
+
+
+Select job, count(*)
+from emp
+group by job
+
+
+Select job, count(*)
+from emp
+gro                                      
+                                      
+                                      
+                                                          
                                                     
                                                     
