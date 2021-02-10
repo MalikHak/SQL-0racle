@@ -1,58 +1,112 @@
-
-SELECT * from dept
-where deptno = ( select deptno from dept where deptno = 30)
-
-
-SELECT * from dept
-where deptno < ( select deptno from dept where deptno = 30)
+Single Table Query
+                                                Select Clause
+SELECT * FROM EMP;
 
 
-SELECT * from dept
-where deptno < ( select deptno from dept where deptno = 30)
-and dname = 'ACCOUNTING'
+--SELECT <column>
+--FROM <table>
 
 
-SELECT * from dept
-where deptno < 30
-and dname = 'ACCOUNTING'
+SELECT JOB
+FROM EMP;
 
 
-SELECT * from ( select * from dept)
+SELECT JOB, ENAME
+FROM EMP;
 
 
-SELECT * from ( select * from emp)
+SELECT *
+FROM EMP;
+                                                            Where Clause
+
+SELECT *
+FROM EMP
+WHERE job = 'MANAGER'
 
 
-SELECT * from emp where deptno = (select deptno from dept where loc = 'CHICAGO')
+SELECT *
+FROM EMP
+WHERE JOB = 'SALESMAN'
+AND SAL = 1600
+AND COMM = 300
+AND DEPTNO = 30
+                                                        Operators in Where Clause
+                                                        
+SELECT * FROM EMP
+WHERE JOB != 'SALESMAN'
 
 
-SELECT * from emp where deptno in (select deptno from dept where deptno in (10,20))
+SELECT * FROM EMP
+WHERE JOB = 'SALESMAN'
+AND SAL = 1500
 
 
-SELECT * from emp where deptno in (select deptno, loc, dname from dept where deptno in (10,20)) --too many values
+SELECT * FROM EMP
+WHERE JOB != 'SALESMAN'
+AND SAL < 2500
 
 
-SELECT job, ename, (select job from emp)
-from emp  -- single-row subquery returns more than one row
+SELECT * FROM EMP
+WHERE JOB != 'SALESMAN'
+AND SAL < 3000
 
 
-SELECT job, ename, (select job from emp where ename = 'KING')
-from emp 
+SELECT * FROM EMP
+WHERE JOB != 'SALESMAN'
+AND SAL <= 3000
+
+                                                            Combine Where & OR Operators
+ SELECT * FROM EMP
+WHERE JOB = 'CLERK'
+OR JOB = 'SALESMAN'
 
 
-SELECT job, ename, (select 'Hello' from emp)
-from emp -- single-row subquery returns more than one row
+-- Get the names of those employees that are not managers nor salesmen and have a salary greater than or equal to 2000 
+SELECT ENAME FROM E
+
+                                                    Filtering Queries
+SELECT ename, hiredate FROM EMP
+WHERE DEPTNO  = 20 
+OR DEPTNO = 30
 
 
-SELECT job, ename, (select * from dual)
-from emp
+SELECT ename, hiredate FROM EMP
+WHERE DEPTNO IN (20,30)
 
 
-SELECT job, ename, (select 'Hello there' from dual)
-from emp
+SELECT ename, hiredate FROM EMP
+WHERE ENAME IN ('FORD', 'SMITH', 'ALLEN', 'WARD', 'MARTIN')
 
 
-SELECT job, ename, (select 'Hello there' from dual)
-from emp
-where job = (select job from emp where job = 'PRESIDENT')
+SELECT ename, hiredat
 
+                                                                        Filtering Conditions & Operator Precedence
+
+-- Write a query that returns those employees that don't make any commision and have a salary greater than 1100
+-- but less than 5000. Exclude those employees that have a salary equal to 3000
+SELECT * FROM EMP WHERE ( COMM IS NULL
+AND SAL > 1100 AND SAL < 5000
+AND SAL <> 3000 )
+OR COMM = 0
+
+
+SELECT * FROM EMP
+WHERE ( COMM IS
+                                                                    Ordering, Concatenating, Aliasing
+                                                                    
+                                                                    
+ SELECT ENAME "EMPLOYEE NAME", SAL SALARY, COMM COMMISSION
+FROM EMP;
+
+
+SELECT 'hello my name is ' || ename as "concatenated value"
+FROM EMP
+WHERE job = 'MANAGER'
+
+-- Create Query that looks like:
+-- King makes $5000 per month 
+-- Blake makes $2850 per month 
+-- Clark makes $2450 per month 
+SELECT ename || ' makes $' || sal || ' pe                                                                   
+
+                                                                
