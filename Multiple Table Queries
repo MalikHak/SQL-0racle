@@ -1,0 +1,223 @@
+SELECT * from dept
+
+
+SELECT * from dept
+where deptno = 30
+
+
+SELECT * from dept
+where deptno = ( select deptno from dept where deptno = 30)
+
+
+SELECT * from dept
+where deptno < ( select deptno from dept where deptno = 30)
+
+
+SELECT * from dept
+where deptno < ( select deptno from dept where deptno = 30)
+and dname = 'ACCOUNTING'
+
+
+SELECT * from dept
+where deptno < 30
+and dname = 'ACCOUNTING'
+
+
+SELECT * from ( select * from dept)
+
+
+                                                              Nested Queries
+                                                              
+
+SELECT * from ( select * from emp)
+
+
+SELECT * from emp where deptno = (select deptno from dept where loc = 'CHICAGO')
+
+
+SELECT * from emp where deptno in (select deptno from dept where deptno in (10,20))
+
+
+SELECT * from emp where deptno in (select deptno, loc, dname from dept where deptno in (10,20)) --too many values
+
+
+SELECT job, ename, (select job from emp)
+from emp  -- single-row subquery returns more than one row
+
+
+SELECT job, ename, (select job from emp where ename = 'KING')
+from emp 
+
+
+SELECT job, ename, (select 'Hello' from emp)
+from emp -- single-row subquery returns more than one row
+
+
+SELECT job, ename, (select * from dual)
+from emp
+
+
+SELECT job, ename, (select 'Hello there' from dual)
+from emp
+
+
+SELECT job, ename, (select 'Hello there' from dual)
+from emp
+where job = (select job from emp where job = 'PRESIDENT')
+
+
+
+                                                Relating Tables Together Using Join
+                                                
+                                                
+ SELECT * from emp
+where deptno = (select deptno from dept where loc = 'CHICAGO')
+
+
+SELECT * from emp
+
+
+SELECT * from dept
+
+
+SELECT *
+from emp, dept
+WHERE emp.deptno = dept.deptno
+
+
+SELECT *
+from emp, dept
+WHERE emp.deptno = dept.deptno
+and LOC = 'DALLAS'
+
+
+SELECT ename, job, sal
+from emp, dept
+WHERE emp.deptno = dept.deptno
+and dept.loc = 'DALLAS'
+
+
+SELECT emp.ename, emp.job, emp.sal
+from emp, dept
+WHERE deptno = deptno
+and dept.loc = 'DALLAS' -- column ambiguously defined
+
+
+SELECT ename as first_name, job, sal
+from emp, dept
+WHERE emp.deptno = dept.deptno
+and dept.loc = 'DALLAS'
+
+
+SELECT e.ename as first_name, job, sal
+from emp e, dept d
+WHERE e.deptno = d.deptno
+and loc = 'DALLAS'
+
+
+SELECT e.ename as first_name, job, sal, e.deptno
+from emp e, dept d
+WHERE e.deptno = d.deptno
+and loc = 'DALLAS'
+
+
+SELECT e.ename as first_name, job, sal, e.deptno
+from (select * from emp where job in ('MANAGER', 'CLERK')) e, (SELECT * from dept) d
+WHERE e.deptno = d.deptno
+and loc = 'DALLAS'
+
+-- Solution to Assignment at 18:05
+
+SELECT e.ename as first_name, job, sal, e.deptno
+from (select * from emp where job in ('MANAGER', 'CLERK')) e, (SELECT * from dept where loc = 'DALLAS') d
+WHERE e.deptno = d.deptno
+
+
+
+                                                            INNER & OUTER JOINS
+                                                            
+                                                            
+SELECT *
+from emp, dept
+WHERE emp.deptno = dept.deptno
+
+
+SELECT *
+from emp INNER JOIN dept
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from emp RIGHT JOIN dept
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from emp LEFT JOIN dept
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from dept LEFT JOIN emp
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from dept RIGHT JOIN emp
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from emp RIGHT OUTER JOIN dept
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from emp LEFT OUTER JOIN dept
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from emp, dept
+WHERE emp.deptno(+) = dept.deptno --RIGHT OUTER JOIN
+
+
+SELECT *
+from emp, dept
+WHERE emp.deptno = dept.deptno(+) --LEFT OUTER JOIN
+
+
+SELECT *
+from emp FULL OUTER JOIN dept
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from (select * from emp) emp FULL OUTER JOIN dept
+ON emp.deptno = dept.deptno
+
+
+SELECT *
+from (select * from emp) e FULL OUTER JOIN dept
+ON e.deptno = dept.deptno
+
+
+SELECT *
+from (select * from emp) e FULL OUTER JOIN (select * from dept) d
+ON e.deptno = d.deptno
+
+
+SELECT *
+from (select * from emp) e, (select * from dept) d
+WHERE e.deptno = d.deptno
+
+
+SELECT *
+from (select * from emp where job = 'SALESMAN') e FULL OUTER JOIN (select * from dept) d
+ON e.deptno = d.deptno
+
+
+
+                                                                    
+                                                            
+                                                
