@@ -62,3 +62,37 @@ where job = 'CLERK'
 SELECT avg(sal)
 from emp
 where job = 'MANAGER'
+
+                                                      GroupBy Clause, Having Clause
+                                                      
+SELECT avg(sal), job
+from emp
+GROUP BY job
+
+
+SELECT job
+from emp
+GROUP BY job
+
+
+SELECT count(*), job
+from emp
+GROUP BY job
+
+
+SELECT min(sal), job
+from emp
+GROUP BY job
+
+
+SELECT distict job from emp
+
+SELECT * from emp
+
+
+Select job, count(*)
+from emp
+group by job
+
+
+
