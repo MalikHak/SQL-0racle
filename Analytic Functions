@@ -1,0 +1,29 @@
+select colour,count(*) from bricks group by colour
+
+//TOTAL Row Size
+select b.*,(select count(*) from bricks ) from bricks b
+
+//Total Size bY Colour
+
+select b.*,(select count(*) from bricks where colour = b.colour ) from bricks b
+
+//Total Weight By Colour
+
+Select b.*,(select sum(weight) from bricks where colour=b.colour) from bricks b
+
+//Total Weight By Colour Column Namae Aliass
+
+Select b.*,(select sum(weight) from bricks where colour=b.colour) as Total_Weight_By_Colour from bricks b
+
+
+//Total Weight By Shape / Weight By Shape
+
+Select b.*,(select sum(weight) from bricks where shape=b.shape) as Total_Weight_By_Shape from bricks b
+
+//Total Weight By ID
+
+
+//TOTAL Row Size
+select b.*,(select count(*) from bricks ) from bricks b
+
+select b.*,count(*) over() from bricks b
