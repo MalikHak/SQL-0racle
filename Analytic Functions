@@ -27,3 +27,13 @@ Select b.*,(select sum(weight) from bricks where shape=b.shape) as Total_Weight_
 select b.*,(select count(*) from bricks ) from bricks b
 
 select b.*,count(*) over() from bricks b
+
+
+//Multiple Columns
+
+select b.*,
+sum(weight) over( partition by shape) total_weight_by_shape,
+sum(weight) over( partition by colour) total_weight_by_colour,
+max(weight) over( partition by shape) max_weight_by_shape,
+max(weight) over( partition by colour) max_weight_by_colour
+from bricks b;
