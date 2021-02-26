@@ -37,10 +37,6 @@ INSERT ALL
 SELECT * FROM DUAL; 
 
 
-
-
-
-
 CREATE TABLE products
 (
     product_id number not null,
