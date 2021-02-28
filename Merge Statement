@@ -1,6 +1,4 @@
 
--- MAKE SURE YOU FIRST RUN THE merge_sql_example FILE AS SHOWN IN THE VIDEO 
-
 
 MERGE INTO existing_customers c
 USING new_customers n
