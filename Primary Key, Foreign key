@@ -1,0 +1,21 @@
+Primary Keys: https://www.w3schools.com/sql/sql_primarykey.asp
+
+Foreign Keys: https://www.w3schools.com/sql/sql_foreignkey.asp
+
+
+
+ERÂ Diagrams are not covered in the exam. But you can go through the following documentation to learn more about how to create them. This is easy to learn once you've completed the contents of the course. Make sure to finish the course first.
+
+ERÂ Diagram: https://www.smartdraw.com/entity-relationship-diagram/#whatIsERD
+
+Composite keys:Â This should be self evident after you've understood primary keys and written enough queries involving joins. Composite key is a combination of two or more columns in a table that can be used to uniquely identify each row in the table. Uniqueness is only guaranteed when the columns are combined; when taken individually the columns do not guarantee uniqueness.Â 
+
+Below is an example of creating or altering a table with a composite key:
+
+create table T ( x int,Â 
+y int,Â 
+z int,Â 
+constraint t_pk primary key (x,y) );
+Additionally you could just modify an existing table to create a composite key:
+
+alter table t add constraint t_pk primary key(x,y);
