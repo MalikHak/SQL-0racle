@@ -30,6 +30,7 @@ BEGIN
 	VALUES (10, 'Robert', 'Rice', 'IN', 'robrice123');
 END;
 
+
 CREATE TABLE  new_customers(
   customer_id NUMBER(5),
   first_name VARCHAR2(100),
